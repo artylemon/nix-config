@@ -88,6 +88,13 @@
     xwallpaper
     rofi
     pcmanfm
+    brave
+    gcc
+    lua
+    nodejs_24
+    zip
+    unzip
+    luajitPackages.luarocks_bootstrap
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
