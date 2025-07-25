@@ -19,7 +19,21 @@
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager = {
+    enable = true;  # Easiest to use and most distros use this by default.
+    wifi.backend = "iwd";
+  };
+  networking.wireless.iwd.enable = true;
+
+  hardware.bluetooth = {
+    enable = true;
+  };
+
+
+  fonts.fontconfig.enable = true;
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -38,14 +52,88 @@
 
   # Enable the X11 windowing system.
   services.xserver = {
-    enable = true;
-    windowManager.qtile.enable = true;
-    displayManager.sessionCommands = ''
-      xwallpaper --zoom ~/walls/Cat_at_Play.png
-      xset r rate 200 35 &
-    '';
+    enable = false;
+    windowManager.qtile = {
+      enable = true;
+      extraPackages = pkgs: with pkgs; [
+        qtile-extras
+        iwlib         # required for Wi-Fi widgets
+      ];
+
+    };
+    displayManager = {
+      lightdm = {
+        enable = false;
+        greeters.gtk = {
+          enable = true;
+          theme = {
+            name = "Arc-Dark";
+            package = pkgs.arc-theme;
+          };
+          iconTheme = {
+            name = "Adwaita";
+            package = pkgs.adwaita-icon-theme;
+          };
+          cursorTheme = {
+            name = "Adwaita";
+            package = pkgs.adwaita-icon-theme;
+          };
+        };
+      };
+    };
   };
-  
+
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [
+      swaylock # Screen locker
+      swaybg # Background service
+      swayidle # Idle management
+      waybar # Status bar
+      mako # Notification daemon
+      grim # Screenshots tool
+      slurp # Region selection for screenshots
+      wl-clipboard #Clipboard support
+      xdg-desktop-portal-wlr # Screen sharing integration
+    ];
+  };
+
+  # Enable Wayland-specific env vars
+  environment.sessionVariables = {
+    XDG_SESSION_TYPE = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    SDL_VIDEODRIVER = "wayland";
+  };
+
+  services.displayManager = {
+    defaultSession = "sway";
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+  };
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
+
+  # Laptop power management
+  powerManagement.enable = true;
+  services.thermald.enable = true;
+  services.tlp.enable = true;
+  services.tlp.settings = {
+    CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    START_CHARGE_THRESH_BAT0 = 40;
+    STOP_CHARGE_THRESH_BAT0 = 90;
+  };
+
+  # Enables powertop autotune
+  powerManagement.powertop.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -81,20 +169,28 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    python3Full
     neovim
+    networkmanagerapplet
     git
     alacritty
     btop
     xwallpaper
+    xclip
     rofi
     pcmanfm
     brave
     gcc
     lua
+    lua5_1
     nodejs_24
     zip
     unzip
     luajitPackages.luarocks_bootstrap
+    bluez
+    blueman
+    pamixer
+    pavucontrol
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -141,4 +237,3 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-

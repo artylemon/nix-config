@@ -12,17 +12,17 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux"; # Change if laptop is ARM
       specialArgs = { inherit self; };
-      
-      modules = [ 
+
+      modules = [
         ./hosts/nixos/configuration.nix
 
-	home-manager.nixosModules.home-manager 
-	{
-	  home-manager.users.arty = {
-	    imports = [ ./users/arty/home.nix ];
-	    _module.specialArgs = {inherit self; };
-	  };
-	}
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.users.arty = {
+            imports = [ ./users/arty/home.nix ];
+            _module.specialArgs = {inherit self; };
+          };
+        }
       ];
     };
   };
