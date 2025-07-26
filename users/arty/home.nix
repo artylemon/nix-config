@@ -24,6 +24,13 @@
     };
   };
 
+  # Git configuration
+  programs.git = {
+    enable = true;
+    userName = "artylemon"; # Replace with your name, e.g., "John Doe"
+    userEmail = "artemtiunelis@gmail.com"; # Replace with your email
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.grk = true;
@@ -87,6 +94,10 @@
 
       # Touchpad configuration
       input = {
+        "type:keyboard" = {
+          xkb_layout = "us,ru";
+          xkb_options = "grp:win_space_toggle";
+        };
         "type:touchpad" = {
           natural_scroll = "enabled";
           tap = "enabled"; # Optional: Tap-to-click

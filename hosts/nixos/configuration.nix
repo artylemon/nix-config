@@ -43,45 +43,21 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = false;
-    windowManager.qtile = {
-      enable = true;
-      extraPackages = pkgs: with pkgs; [
-        qtile-extras
-        iwlib         # required for Wi-Fi widgets
-      ];
-
-    };
-    displayManager = {
-      lightdm = {
-        enable = false;
-        greeters.gtk = {
-          enable = true;
-          theme = {
-            name = "Arc-Dark";
-            package = pkgs.arc-theme;
-          };
-          iconTheme = {
-            name = "Adwaita";
-            package = pkgs.adwaita-icon-theme;
-          };
-          cursorTheme = {
-            name = "Adwaita";
-            package = pkgs.adwaita-icon-theme;
-          };
-        };
-      };
-    };
+  # Console settings for TTY
+  console = {
+    font = "Lat2-Terminus16"; # Supports Cyrillic
+    useXkbConfig = true; # Use xkb settings for TTY
   };
+
+  # Keyboard layouts for Sway and TTY
+  services.xserver.xkb = {
+    layout = "us,ru";
+    options = "grp:win_space_toggle"; # Mod4+Space to toggle
+  };
+
+  services.displayManager.ly.enable = true;
 
   programs.sway = {
     enable = true;
@@ -109,10 +85,6 @@
 
   services.displayManager = {
     defaultSession = "sway";
-    sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
   };
 
   services.pipewire = {
@@ -191,6 +163,8 @@
     blueman
     pamixer
     pavucontrol
+    qbittorrent
+    vlc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
