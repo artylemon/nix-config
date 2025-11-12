@@ -13,6 +13,7 @@
         mod = "Mod4";
       in {
         "${mod}+Return" = "exec alacritty";
+        "${mod}+Escape" = "exec lock-screen";
         "${mod}+b" = "exec brave";
         "${mod}+d" = "exec wofi --show drun";
         "${mod}+h" = "focus left";
@@ -85,6 +86,17 @@
         { command = "swaybg -i /home/arty/walls/Cat_at_Play.png -m fill"; }
         { command = "mako"; }
         { command = "nm-applet"; }
+        {
+          command = ''
+          swayidle -w \
+            timeout 300 'lock-screen' \
+            timeout 600 'swaymsg "output * dpms off"' \
+            resume 'swaymsg "output * dpms on"' \
+            before-sleep 'lock-screen' \
+            timeout 900 'systemctl suspend'
+          '';
+          always = true;
+        }
       ];
 
       window = {

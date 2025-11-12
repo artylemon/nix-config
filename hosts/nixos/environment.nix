@@ -6,6 +6,8 @@
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     SDL_VIDEODRIVER = "wayland";
+
+    WALLPAPER = "${config.home.homeDirectory}/walls/Cat_at_Play.png";
   };
 
   environment.etc."xdg/user-dirs.dirs".text = ''

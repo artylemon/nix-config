@@ -3,17 +3,13 @@
   programs.alacritty.enable = true;
 
   programs.alacritty.settings = {
-    env = {
-      TERM = "alacritty";
+    general = {
+      live_config_reload = true;
+      working_directory = "/home/arty/Desktop";
     };
 
-    working_directory = "/home/arty/Desktop";
-
     window = {
-      padding = {
-        x = 20;
-        y = 20;
-      };
+      opacity = 0.85; # Slight transparency
     };
 
     scrolling = {
@@ -23,78 +19,58 @@
 
     font = {
       normal = {
-        family = "JetBrains Mono";
+        family = "JetBrainsMono Nerd Font";
         style = "Regular";
       };
-
-      size = 10;
+      bold = {
+        family = "JetBrainsMono Nerd Font";
+        style = "Bold";
+      };
+      italic = {
+        family = "JetBrainsMono Nerd Font";
+        style = "Italic";
+      };
+      bold_italic = {
+        family = "JetBrainsMono Nerd Font";
+        style = "Bold Italic";
+      };
+      size = 12;
       builtin_box_drawing = true;
-      draw_bold_text_with_bright_colors = false;
     };
 
     colors = {
       primary = {
-        background = "#111111";
-        foreground = "#ffffff";
+        background = "#191724"; # Rosé Pine base
+        foreground = "#e0def4"; # Rosé Pine text
       };
-
       cursor = {
-        text = "CellBackground";
-        cursor = "CellForeground";
+        text = "#e0def4"; # Rosé Pine text
+        cursor = "#524f67"; # Rosé Pine pine
       };
-
       vi_mode_cursor = {
-        text = "CellBackground";
-        cursor = "CellForeground";
+        text = "#e0def4"; # Rosé Pine text
+        cursor = "#524f67"; # Rosé Pine pine
       };
-
       normal = {
-        black = "#111111";
-        red = "#d40b0e";
-        green = "#52ff80";
-        yellow = "#fff642";
-        blue = "#1a93c7";
-        magenta = "#db1d00";
-        cyan = "#5ae8e1";
-        white = "#ffffff";
+        black = "#26233a"; # Rosé Pine surface
+        red = "#eb6f92"; # Rosé Pine love
+        green = "#9ccfd8"; # Rosé Pine pine
+        yellow = "#f6c177"; # Rosé Pine gold
+        blue = "#31748f"; # Rosé Pine foam
+        magenta = "#c4a7e7"; # Rosé Pine iris
+        cyan = "#ebbcba"; # Rosé Pine rose
+        white = "#e0def4"; # Rosé Pine text
       };
-
-      transparent_background_colors = true;
+      bright = {
+        black = "#6e6a86"; # Rosé Pine muted
+        red = "#eb6f92"; # Rosé Pine love
+        green = "#9ccfd8"; # Rosé Pine pine
+        yellow = "#f6c177"; # Rosé Pine gold
+        blue = "#31748f"; # Rosé Pine foam
+        magenta = "#c4a7e7"; # Rosé Pine iris
+        cyan = "#ebbcba"; # Rosé Pine rose
+        white = "#e0def4"; # Rosé Pine text
+      };
     };
-
-    live_config_reload = true;
-
-    key_bindings = [
-      {
-        key = "C";
-        mods = "Control | Shift";
-        chars = "\\x03";
-      }
-      {
-        key = "O";
-        mods = "Control";
-        action = "ScrollHalfPageUp";
-      }
-      {
-        key = "P";
-        mods = "Control";
-        action = "ScrollHalfPageDown";
-      }
-      {
-        key = "Equals";
-        mods = "Control";
-        action = "IncreaseFontSize";
-      }
-      {
-        key = "Plus";
-        mods = "Control";
-        action = "IncreaseFontSize";
-      }
-      {
-        key = "Minus";
-        mods = "Control";
-        action = "DecreaseFontSize";
-      }
-    ];
   };
 }
