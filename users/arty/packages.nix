@@ -7,5 +7,6 @@
     swaylock-effects
     swayidle
     swaybg
+    (writeScriptBin "lock-screen" (builtins.readFile ./lock-screen.sh))
   ];
 }

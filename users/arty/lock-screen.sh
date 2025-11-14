@@ -1,8 +1,8 @@
 # users/arty/lock-screen.sh
 #!/usr/bin/env bash
 
-swaylock-effects \
-  --image "$WALLPAPER" \
+swaylock \
+  --screenshots \
   --effect-blur 7x5 \
   --effect-vignette 0.5:0.5 \
   --clock \
@@ -17,6 +17,4 @@ swaylock-effects \
   --ring-ver-color 9ccfd8 \
   --ring-wrong-color eb6f92 \
   --ring-clear-color 26233a \
-  --fade-in 0.3 \
-  --grace 2 \
   --daemonize
