@@ -4,7 +4,8 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    python3Full
+    python314
+    python315
     neovim
     networkmanagerapplet
     git
@@ -34,5 +35,7 @@
     ntfs3g
     exfat
     udiskie
+    protonvpn-gui
+    cargo
   ];
 }
