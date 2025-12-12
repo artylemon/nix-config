@@ -1,102 +1,93 @@
-{config, pkgs, ...}:
-{
-  programs.waybar.enable = true;
+{ config, pkgs, lib, ... }:
 
-  programs.waybar.settings = {
-    mainBar = {
+{
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;  # makes waybar restart automatically if it crashes
+
+    settings = [{
       layer = "top";
       position = "top";
-      height = 26;
-      output = [
-        "eDP-1"
+      height = 32;
+
+      modules-left   = [ "sway/workspaces" "sway/mode" ];
+      modules-center = [ "clock" ];                     # ← your #2 requirement
+      modules-right  = [
+        "network"              # ← your #1 requirement (clickable)
+        "pulseaudio"
+        "cpu"
+        "memory"
+        "battery"
+        "tray"
       ];
-
-      modules-left = [ "custom/logo" "sway/workspaces" "sway/mode" ];
-      modules-right = [ "sway/language" "clock" "battery" ];
-
-      "custom/logo" = {
-        format = "";
-        tooltip = false;
-        on-click = ''bemenu-run --accept-single  -n -p "Launch" --hp 4 --hf "#ffffff" --sf "#ffffff" --tf "#ffffff" '';
-      };
 
       "sway/workspaces" = {
         disable-scroll = true;
         all-outputs = true;
-        persistent_workspaces = {
-          "1" = [];
-          "2" = [];
-          "3" = [];
-          "4" = [];
-        };
-        disable-click = true;
+        persistent_workspaces = { "1" = []; "2" = []; "3" = []; "4" = []; "5" = []; };
       };
 
       "sway/mode" = {
-        tooltip = false;
+        format = "<span style=\"italic\">{}</span>";
       };
 
-      "sway/language" = {
-        format = "{shortDescription}";
-        tooltip = false;
-        on-click = ''swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
-
-      };
-
-      "clock" = {
+      clock = {
         interval = 60;
-        format = "{:%a %d/%m %I:%M}";
+        format = "{:%H:%M}";      # looks good centered
+        format-alt = "{:%Y-%m-%d %H:%M}";
+        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
 
-      "battery" = {
+      network = {
+        format-wifi = "{essid}  {signalStrength}% ";
+        format-ethernet = "{ifname} ";
+        format-linked = "{ifname} (No IP) ";
+        format-disconnected = "⚠";
+        tooltip-format = "{ifname} – {ipaddr}/{cidr}";
+        # Left click  → show nm-connection-editor
+        # Right click → launch the tray applet (best UX)
+        on-click = "nm-connection-editor";
+        on-click-right = "nm-applet &";
+      };
+
+      pulseaudio = {
+        format = "{volume}% {icon}";
+        format-bluetooth = "{volume}% {icon}";
+        format-muted = "婢";
+        format-icons = {
+          default = [ "" "" " "];
+          headphone = "";
+          headset = "";
+        };
+        scroll-step = 5;
+        on-click = "pavucontrol";
+      };
+
+      cpu = {
+        format = "{usage}% ";
         tooltip = false;
       };
-    };
+
+      memory = {
+        format = "{used:0.1f}G ";
+      };
+
+      battery = {
+        bat = "BAT0";                         # usually BAT0 or BAT1 – check with `upower -e`
+        states = {
+          warning = 30;
+          critical = 15;
+        };
+        format = "{capacity}% {icon}";
+        format-charging = "{capacity}% ";
+        format-icons = [ "" "" "" "" "" ];
+        tooltip = false;
+      };
+
+      tray = {
+        spacing = 8;
+      };
+      style = "${./waybar-style.css}";
+    }];
   };
-
-  programs.waybar.style = ''
-
-  * {
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    margin: 0;
-    font-size: 11px;
-  }
-
-  window#waybar {
-    background: #292828;
-    color: #ffffff;
-  }
-
-  #custom-logo {
-    font-size: 18px;
-    margin: 0;
-    margin-left: 7px;
-    margin-right: 12px;
-    padding: 0;
-    font-family: NotoSans Nerd Font Mono;
-  }
-
-  #workspaces button {
-    margin-right: 10px;
-    color: #ffffff;
-  }
-  #workspaces button:hover, #workspaces button:active {
-    background-color: #292828;
-    color: #ffffff;
-  }
-  #workspaces button.focused {
-    background-color: #383737;
-  }
-
-  #language {
-    margin-right: 7px;
-  }
-
-  #battery {
-    margin-left: 7px;
-    margin-right: 3px;
-  }
-  '';
 }

@@ -8,7 +8,7 @@
     enable = true;
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
-      swaylock swaybg swayidle waybar mako grim slurp wl-clipboard xdg-desktop-portal-wlr
+      swaylock swaybg swayidle mako grim slurp wl-clipboard xdg-desktop-portal-wlr
     ];
   };
 

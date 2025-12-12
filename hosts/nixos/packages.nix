@@ -37,5 +37,7 @@
     udiskie
     protonvpn-gui
     cargo
+    bemenu
+    libnotify
   ];
 }
