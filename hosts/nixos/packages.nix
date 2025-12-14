@@ -39,5 +39,6 @@
     cargo
     bemenu
     libnotify
+    vscode
   ];
 }

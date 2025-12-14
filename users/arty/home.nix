@@ -2,10 +2,10 @@
 
 {
   imports = [
+    ./sway.nix
     ./alacritty.nix
     ./git.nix
     ./ssh.nix
-    ./sway.nix
     ./packages.nix
     ./waybar.nix
   ];

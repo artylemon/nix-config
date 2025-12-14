@@ -83,7 +83,6 @@
         { command = "swaybg -i /home/arty/walls/Cat_at_Play.png -m fill"; }
         { command = "mako"; }
         { command = "nm-applet --indicator"; }
-        { command = "pavucontrol --tab=3"; always = false; }
         {
           command = ''
           swayidle -w \

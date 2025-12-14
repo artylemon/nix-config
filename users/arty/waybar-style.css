@@ -1,89 +1,78 @@
+/* waybar-style.css */
+/* Rose Pine Palette Reference:
+   Base:    #191724
+   Surface: #1f1d2e
+   Overlay: #26233a
+   Muted:   #6e6a86
+   Subtle:  #908caa
+   Text:    #e0def4
+   Love:    #eb6f92
+   Gold:    #f6c177
+   Rose:    #ebbcba
+   Pine:    #31748f
+   Foam:    #9ccfd8
+   Iris:    #c4a7e7
+*/
+
 * {
   border: none;
   border-radius: 0;
-  font-family: JetBrainsMono Nerd Font, sans-serif;
-  font-size: 13px;
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
+  font-size: 13px; /* Slightly larger for better legibility */
   min-height: 0;
-  padding: 0;
-  margin: 0;
 }
 
 window#waybar {
-  background: rgba(40, 40, 40, 0.90);
-  color: #ebdbb2;
-  border-bottom: 2px solid #89b4fa;
-  border-radius: 0 0 12px 12px;
-  backdrop-filter: blur(12px);
+  background: rgba(25, 23, 36, 0.9); /* Rose Pine Base with 0.9 opacity */
+  color: #e0def4; /* Text */
+  transition: background-color 0.3s;
+}
+
+/* Grouping modules with horizontal margins instead of individual boxes */
+#workspaces, #clock, #cpu, #memory, #battery, #network, #pulseaudio, #tray {
+  margin: 4px 6px;
+  padding: 0 12px;
+  background: #26233a; /* Overlay - distinct from base but subtle */
+  border-radius: 12px;
+}
+
+/* Remove background from specific modules to make it feel lighter */
+#cpu, #memory, #network {
+  background: transparent;
+  padding: 0 6px;
 }
 
 #workspaces button {
-  padding: 0 12px;
-  margin: 0 4px;
-  color: #a89984;
+  padding: 0 8px;
+  color: #908caa; /* Subtle */
   background: transparent;
-  border-radius: 8px;
 }
 
 #workspaces button.focused,
 #workspaces button.active {
-  background: #fabd2f;
-  color: #282828;
+  color: #ebbcba; /* Rose */
+  font-weight: bold;
 }
 
 #workspaces button.urgent {
-  background: #cc241d;
-  color: white;
-}
-
-#mode {
-  background: #cc241d;
-  color: white;
-  padding: 0 12px;
-  border-radius: 8px;
-  margin: 0 6px;
+  color: #eb6f92; /* Love */
 }
 
 #clock {
-  background: #458588;
-  color: #282828;
-  padding: 0 20px;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-#network, #pulseaudio, #cpu, #memory, #battery {
-  background: #3c3836;
-  color: #ebdbb2;
-  padding: 0 14px;
-  margin: 4px 4px;
-  border-radius: 10px;
-}
-
-#network.disconnected {
-  background: #cc241d;
-  color: white;
-}
-
-#pulseaudio.muted {
-  color: #fb4934;
-}
-
-#battery.charging {
-  background: #8ec07c;
-  color: #282828;
+  background: transparent; /* No block for clock to keep center clean */
+  color: #e0def4; /* Text */
+  font-weight: 600;
 }
 
 #battery.critical:not(.charging) {
-  background: #cc241d;
-  color: white;
+  color: #eb6f92; /* Love */
   animation: blink 1.5s infinite;
 }
 
 @keyframes blink {
-  to { background: #fb4934; }
+  to { color: #eb6f92; }
 }
 
 #tray {
-  margin-right: 10px;
+  background: transparent;
 }
