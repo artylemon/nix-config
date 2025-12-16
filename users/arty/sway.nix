@@ -8,7 +8,6 @@
     config = {
       modifier = "Mod4";
       terminal = "alacritty";
-      bars = [];
       menu = "wofi --show drun";
       keybindings = let
         mod = "Mod4";

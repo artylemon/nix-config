@@ -7,7 +7,7 @@
     ./git.nix
     ./ssh.nix
     ./packages.nix
-    ./waybar.nix
+    ./swaybar.nix
   ];
 
   home.username = "arty";

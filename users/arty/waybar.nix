@@ -4,7 +4,7 @@
   programs.waybar = {
     enable = true;
     style = builtins.readFile ./waybar-style.css;
-    systemd.enable = false;
+    systemd.enable = true;
     settings = {
       mainBar = {
 
@@ -90,6 +90,13 @@
           spacing = 8;
         };
       };
+    };
+  };
+
+  systemd.user.services.waybar = lib.mkIf config.programs.waybar.enable {
+    Service = {
+      Restart = lib.mkForce "always";
+      RestartSec = lib.mkForce 2;
     };
   };
 }
