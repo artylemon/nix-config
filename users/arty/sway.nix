@@ -69,6 +69,24 @@
         "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
         "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
         "XF86RFKill" = "exec nmcli radio wifi toggle";
+        "XF86ScreenSaver" = "exec lock-screen";
+
+        # Media Keys
+        "XF86AudioPlay" = "exec playerctl play-pause";
+        "XF86AudioNext" = "exec playerctl next";
+        "XF86AudioPrev" = "exec playerctl previous";
+
+        # Screenshots
+        "Print" = "exec grim - | wl-copy";
+        "Shift+Print" = "exec grim -g \"$(slurp)\" - | wl-copy";
+
+        # Scratchpad
+        "${mod}+minus" = "scratchpad show";
+        "${mod}+Shift+minus" = "move scratchpad";
+
+        # Notifications
+        "${mod}+n" = "exec makoctl dismiss";
+        "${mod}+Shift+n" = "exec makoctl dismiss -a";
       };
 
       input = {

@@ -8,6 +8,7 @@
     ./ssh.nix
     ./packages.nix
     ./waybar.nix
+    ./bash.nix
   ];
 
   home.username = "arty";
