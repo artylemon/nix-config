@@ -81,6 +81,7 @@
 
       startup = [
         { command = "swaybg -i /home/arty/walls/Cat_at_Play.png -m fill"; }
+        { command = "waybar"; }
         { command = "mako"; }
         { command = "nm-applet --indicator"; }
         {
