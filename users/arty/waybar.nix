@@ -16,6 +16,7 @@
         modules-right = [
           "network"
           "pulseaudio"
+          "backlight"
           "cpu"
           "memory"
           "battery"
@@ -62,6 +63,11 @@
           };
           scroll-step = 5;
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+        };
+
+        backlight = {
+          format = "{percent}% {icon}";
+          format-icons = ["" "" "" "" "" "" "" "" ""];
         };
 
         cpu = {

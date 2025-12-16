@@ -40,5 +40,6 @@
     bemenu
     libnotify
     vscode
+    brightnessctl
   ];
 }

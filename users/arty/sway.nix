@@ -61,6 +61,14 @@
         "${mod}+Shift+8" = "move container to workspace number 8";
         "${mod}+Shift+9" = "move container to workspace number 9";
         "${mod}+Shift+0" = "move container to workspace number 10";
+
+        # Function keys
+        "XF86AudioMute" = "exec pamixer -t";
+        "XF86AudioLowerVolume" = "exec pamixer -d 5";
+        "XF86AudioRaiseVolume" = "exec pamixer -i 5";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+        "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
+        "XF86RFKill" = "exec nmcli radio wifi toggle";
       };
 
       input = {
@@ -84,6 +92,7 @@
         { command = "waybar"; }
         { command = "mako"; }
         { command = "nm-applet --indicator"; }
+        { command = "sway-audio-idle-inhibit"; }
         {
           command = ''
           swayidle -w \

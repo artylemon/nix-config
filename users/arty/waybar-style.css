@@ -29,7 +29,7 @@ window#waybar {
 }
 
 /* Grouping modules with horizontal margins instead of individual boxes */
-#workspaces, #clock, #cpu, #memory, #battery, #network, #pulseaudio, #tray {
+#workspaces, #clock, #cpu, #memory, #battery, #network, #pulseaudio, #backlight, #tray {
   margin: 4px 6px;
   padding: 0 12px;
   background: #26233a; /* Overlay - distinct from base but subtle */
