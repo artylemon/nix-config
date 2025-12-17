@@ -20,6 +20,7 @@
           "cpu"
           "memory"
           "battery"
+          "sway/language"
           "tray"
         ];
 
@@ -30,6 +31,10 @@
 
         "sway/mode" = {
           format = "<span style=\"italic\">{}</span>";
+        };
+
+        "sway/language" = {
+          format = "{} ";
         };
 
         clock = {
@@ -51,7 +56,7 @@
         pulseaudio = {
           format = "{volume}% {icon}";
           format-bluetooth = "{volume}% {icon}";
-          format-muted = "Muted 婢";
+          format-muted = "Muted ∅";
           format-icons = {
             headphone = "";
             hands-free = "";
