@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+  xdg.configFile."swayosd/style.css".source = ./swayosd-style.css;
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;

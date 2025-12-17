@@ -1,0 +1,46 @@
+window {
+    background: transparent;
+}
+
+#container {
+    margin: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: rgba(25, 23, 36, 0.95); /* Base */
+    border: 2px solid #26233a; /* Overlay */
+}
+
+image {
+    color: #ebbcba; /* Rose */
+}
+
+label {
+    color: #e0def4; /* Text */
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+progressbar:disabled {
+    opacity: 0;
+}
+
+progressbar {
+    min-height: 6px;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
+}
+
+trough {
+    min-height: 6px;
+    border-radius: 999px;
+    border: none;
+    background: #26233a; /* Overlay */
+}
+
+progress {
+    min-height: 6px;
+    border-radius: 999px;
+    border: none;
+    background: #ebbcba; /* Rose */
+}
