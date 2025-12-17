@@ -63,11 +63,11 @@
         "${mod}+Shift+0" = "move container to workspace number 10";
 
         # Function keys
-        "XF86AudioMute" = "exec pamixer -t";
-        "XF86AudioLowerVolume" = "exec pamixer -d 5";
-        "XF86AudioRaiseVolume" = "exec pamixer -i 5";
-        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
-        "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
+        "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
+        "XF86AudioLowerVolume" = "exec swayosd-client --output-volume lower";
+        "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume raise";
+        "XF86MonBrightnessDown" = "exec swayosd-client --brightness lower";
+        "XF86MonBrightnessUp" = "exec swayosd-client --brightness raise";
         "XF86RFKill" = "exec nmcli radio wifi toggle";
         "XF86ScreenSaver" = "exec lock-screen";
 
@@ -87,12 +87,15 @@
         # Notifications
         "${mod}+n" = "exec makoctl dismiss";
         "${mod}+Shift+n" = "exec makoctl dismiss -a";
+
+        # Language Switch
+        "${mod}+space" = "exec switch-layout";
       };
 
       input = {
         "type:keyboard" = {
           xkb_layout = "us,ru";
-          xkb_options = "grp:win_space_toggle";
+          # xkb_options = "grp:win_space_toggle"; # Handled by keybinding now
         };
         "type:touchpad" = {
           natural_scroll = "enabled";
@@ -108,6 +111,7 @@
       startup = [
         { command = "swaybg -i /home/arty/walls/Cat_at_Play.png -m fill"; }
         { command = "waybar"; }
+        { command = "swayosd-server"; }
         { command = "mako"; }
         { command = "nm-applet --indicator"; }
         { command = "sway-audio-idle-inhibit"; }

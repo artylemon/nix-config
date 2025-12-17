@@ -35,6 +35,7 @@
 
         "sway/language" = {
           format = "{} ";
+          on-click = "swaymsg input type:keyboard xkb_switch_layout next";
         };
 
         clock = {
@@ -48,7 +49,7 @@
           format-wifi = "{essid} ({signalStrength}%) ";
           format-ethernet = "{ifname} ";
           format-linked = "{ifname} (No IP) ";
-          format-disconnected = "Disconnected ⚠";
+          format-disconnected = "⚠";
           tooltip-format = "{ifname}: {ipaddr}/{cidr}";
           on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
         };
