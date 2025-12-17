@@ -35,5 +35,4 @@
       TimeoutStartSec = "5s";
     };
   };
-  powerManagement.powertop.enable = true;
 }

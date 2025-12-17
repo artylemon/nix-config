@@ -4,6 +4,12 @@
   services.displayManager.ly.enable = true;
   services.displayManager.defaultSession = "sway";
 
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "lock";
+    powerKey = "suspend";
+  };
+
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;

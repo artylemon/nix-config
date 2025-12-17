@@ -11,6 +11,7 @@
     grim
     slurp
     wl-clipboard
+    telegram-desktop
     mako
     (writeScriptBin "lock-screen" (builtins.readFile ./lock-screen.sh))
     playerctl
