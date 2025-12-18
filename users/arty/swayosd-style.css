@@ -17,7 +17,7 @@ image {
 label {
     color: #e0def4; /* Text */
     font-weight: bold;
-    margin-top: 8px;
+    margin: 0;
 }
 
 progressbar:disabled {

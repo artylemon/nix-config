@@ -4,10 +4,12 @@
   services.displayManager.ly.enable = true;
   services.displayManager.defaultSession = "sway";
 
-  services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "lock";
-    powerKey = "suspend";
+  services.logind.settings = {
+    Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "lock";
+      HandlePowerKey = "suspend";
+    };
   };
 
   programs.sway = {

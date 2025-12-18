@@ -3,7 +3,11 @@
 {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
+      "*" = {
+        addKeysToAgent = "yes";
+      };
       "bradgateserver" = {
         hostname = "192.168.1.101";
         user = "arty";

@@ -12,4 +12,4 @@ if [ -z "$LAYOUT" ]; then
   LAYOUT="Unknown"
 fi
 
-swayosd-client --custom-message "$LAYOUT" --custom-icon input-keyboard
+swayosd-client --custom-message "$LAYOUT" --custom-icon input-keyboard-symbolic
