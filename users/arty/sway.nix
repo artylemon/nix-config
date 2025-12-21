@@ -34,6 +34,15 @@
         "${mod}+Shift+Up" = "move up";
         "${mod}+Shift+Right" = "move right";
 
+        "${mod}+Ctrl+h" = "focus output left";
+        "${mod}+Ctrl+j" = "focus output down";
+        "${mod}+Ctrl+k" = "focus output up";
+        "${mod}+Ctrl+l" = "focus output right";
+        "${mod}+Ctrl+Left" = "focus output left";
+        "${mod}+Ctrl+Down" = "focus output down";
+        "${mod}+Ctrl+Up" = "focus output up";
+        "${mod}+Ctrl+Right" = "focus output right";
+
         "${mod}+Alt+h" = "move workspace to output left";
         "${mod}+Alt+j" = "move workspace to output down";
         "${mod}+Alt+k" = "move workspace to output up";
@@ -102,7 +111,6 @@
         "type:touchpad" = {
           natural_scroll = "enabled";
           tap = "enabled";
-          scroll_factor = "0.5";
         };
       };
 
@@ -113,18 +121,17 @@
       startup = [
         { command = "swaybg -i /home/arty/walls/Cat_at_Play.png -m fill"; }
         { command = "waybar"; }
-        { command = "swayosd-server"; }
         { command = "mako"; }
         { command = "nm-applet --indicator"; }
         { command = "sway-audio-idle-inhibit"; }
         {
           command = ''
           swayidle -w \
-            timeout 300 'lock-screen' \
-            timeout 600 'swaymsg "output * dpms off"' \
+            timeout 600 'lock-screen' \
+            timeout 900 'swaymsg "output * dpms off"' \
             resume 'swaymsg "output * dpms on"' \
             before-sleep 'lock-screen' \
-            timeout 900 'systemctl suspend'
+            timeout 1200 'systemctl suspend'
           '';
           always = true;
         }

@@ -18,6 +18,7 @@
     playerctl
     tmux
     jq
+    wdisplays
     (writeScriptBin "switch-layout" (builtins.readFile ./switch-layout.sh))
   ];
 }
