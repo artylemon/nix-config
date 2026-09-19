@@ -9,6 +9,7 @@
     ./packages.nix
     ./waybar.nix
     ./bash.nix
+    ./wlogout.nix
   ];
 
   home.username = "arty";

@@ -29,11 +29,22 @@ window#waybar {
 }
 
 /* Grouping modules with horizontal margins instead of individual boxes */
-#workspaces, #clock, #cpu, #memory, #battery, #network, #pulseaudio, #backlight, #language, #tray {
+#workspaces, #clock, #cpu, #memory, #battery, #network, #pulseaudio, #backlight, #language, #tray, #custom-power {
   margin: 4px 6px;
   padding: 0 12px;
   background: #26233a; /* Overlay - distinct from base but subtle */
   border-radius: 12px;
+}
+
+#custom-power {
+  color: #eb6f92; /* Love */
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+#custom-power:hover {
+  background: #eb6f92; /* Love */
+  color: #191724; /* Base */
 }
 
 /* Remove background from specific modules to make it feel lighter */

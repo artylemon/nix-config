@@ -22,7 +22,14 @@
           "battery"
           "sway/language"
           "tray"
+          "custom/power"
         ];
+
+        "custom/power" = {
+          format = "⏻";
+          tooltip = false;
+          on-click = "wlogout";
+        };
 
         "sway/workspaces" = {
           disable-scroll = true;
