@@ -98,9 +98,6 @@
         # Notifications
         "${mod}+n" = "exec makoctl dismiss";
         "${mod}+Shift+n" = "exec makoctl dismiss -a";
-
-        # Language Switch
-        "${mod}+space" = "exec switch-layout";
       };
 
       input = {
@@ -146,5 +143,11 @@
         titlebar = false;
       };
     };
+
+    extraConfig = ''
+      # Language Switch (--locked keeps this working while swaylock is active,
+      # so the layout can be fixed back to "us" before typing the password)
+      bindsym --locked Mod4+space exec switch-layout
+    '';
   };
 }

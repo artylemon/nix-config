@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     brave
+    ripgrep
     wofi
     swaylock-effects
     swayidle
