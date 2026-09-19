@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     vim
+    claude-code
     wget
     python314
     python315
@@ -16,8 +17,8 @@
     xclip
     brave
     home-manager
-    xfce.thunar
-    xfce.tumbler
+    thunar
+    tumbler
     gvfs
     gcc
     lua
@@ -27,7 +28,7 @@
     unzip
     luajitPackages.luarocks_bootstrap
     bluez
-    blueberry
+    blueman
     pamixer
     pavucontrol
     qbittorrent
@@ -35,7 +36,7 @@
     ntfs3g
     exfat
     udiskie
-    protonvpn-gui
+    proton-vpn
     cargo
     bemenu
     libnotify

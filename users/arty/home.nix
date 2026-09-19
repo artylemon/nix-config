@@ -13,10 +13,11 @@
 
   home.username = "arty";
   home.homeDirectory = "/home/arty";
-  home.stateVersion = "25.05";
+  home.stateVersion = "26.05";
 
   gtk = {
     enable = true;
+    gtk4.theme = config.gtk.theme;
     iconTheme = {
       name = "rose-pine";
       package = pkgs.rose-pine-icon-theme;
