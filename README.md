@@ -1,12 +1,18 @@
 # nixos-config
 
 NixOS flake configuration for a single laptop, using Home Manager for the
-user-level setup. Window manager is Sway (Wayland); display manager is `ly`.
+user-level setup. Display manager is `ly`, which offers two selectable
+sessions: **niri + noctalia** (current default) and **sway + waybar** (the
+original setup, kept working side by side).
 
 ## Structure
 
 ```
-flake.nix                  Flake entrypoint: nixosConfigurations.nixos
+flake.nix                  Flake entrypoint: nixosConfigurations.nixos.
+                            Inputs: nixpkgs, home-manager, noctalia (pinned to
+                            its own nixpkgs via the "cachix" branch so its
+                            binary cache stays usable). nixConfig declares the
+                            noctalia.cachix.org substituter.
 hosts/nixos/                System-level configuration
   configuration.nix         Top-level imports, nix settings, stateVersion
   hardware.nix / hardware-configuration.nix   Hardware-specific config
@@ -15,8 +21,9 @@ hosts/nixos/                System-level configuration
   i18n.nix                  Locale, console keymap, X11 keyboard layout (us,ru)
   fonts.nix                 System fonts
   packages.nix              System-wide packages
-  services.nix              ly display manager, logind lid/power behavior,
-                             sway system package, pipewire, firefox
+  services.nix              ly display manager (defaultSession = "niri"),
+                             logind lid/power behavior, sway + niri system
+                             packages, upower, pipewire, firefox
   users.nix                 User account definitions
   environment.nix           Environment-level settings
 users/arty/                 Home Manager configuration for user `arty`
@@ -24,17 +31,40 @@ users/arty/                 Home Manager configuration for user `arty`
                              (rose-pine), swayosd systemd user service
   sway.nix                  Sway config: keybindings, input, output, startup
                              apps, swayidle lock/suspend timers
+  niri.nix / niri-config.kdl   Niri config, based verbatim on niri's upstream
+                             default-config.kdl (stock keybindings/fuzzel
+                             launcher kept) with only: us,ru keyboard layout,
+                             "noctalia" spawned at startup instead of waybar,
+                             and a window-rule so noctalia's own panels float
+                             instead of tiling.
+  noctalia.nix              Home Manager module for noctalia shell (theme,
+                             wallpaper) — imports inputs.noctalia.homeModules.default
   packages.nix              home.packages, incl. custom scripts wrapped via
                              writeScriptBin (lock-screen, switch-layout)
   lock-screen.sh            swaylock wrapper with rose-pine styling
   switch-layout.sh          Cycles keyboard layout, shows OSD via swayosd
-  waybar.nix / waybar-style.css   Status bar
+  waybar.nix / waybar-style.css   Status bar (sway session only)
   swayosd-style.css         OSD styling
   alacritty.nix             Terminal emulator config
   git.nix                   Git config
   ssh.nix                   SSH config
   bash.nix                  Shell config
 ```
+
+### niri + noctalia notes
+
+- Keybindings are niri's stock defaults (not ported from sway's hjkl scheme)
+  — see `users/arty/niri-config.kdl` or `Mod+Shift+/` in-session for the
+  hotkey overlay. Mod+T terminal, Mod+D launcher (fuzzel), Super+Alt+L lock.
+- Noctalia's theme is set to its built-in "Catppuccin" (closest match to the
+  rose-pine theme used elsewhere; noctalia doesn't ship rose-pine).
+- First build will prompt to trust the `noctalia.cachix.org` substituter
+  (`nixConfig` in flake.nix) — accept it, or binaries get compiled locally.
+- `services.power-profiles-daemon` was deliberately **not** enabled (conflicts
+  with `services.tlp`, already enabled in `hosts/nixos/hardware.nix`), so
+  noctalia's NixOS-level `recommendedServices` bundle wasn't used — only the
+  Home Manager module is wired in. NetworkManager/bluetooth/upower are already
+  enabled elsewhere in the system config.
 
 ## Notable gotchas
 

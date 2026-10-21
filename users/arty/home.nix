@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -10,6 +10,8 @@
     ./waybar.nix
     ./bash.nix
     ./wlogout.nix
+    ./niri.nix
+    ./noctalia.nix
   ];
 
   home.username = "arty";
